@@ -7,11 +7,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final headingColor = Colors.blueGrey.shade700;
-    List<Color> rowColors = [
-      Colors.lightBlue.shade50,
-      Colors.lightGreen.shade50
-    ];
     return Scaffold(
       appBar: AppBar(
         title: Text("Home Screen"),
