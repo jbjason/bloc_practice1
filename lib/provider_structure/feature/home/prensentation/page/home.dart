@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
   final _pages = [
     HomePage(),
     MyDimens().getDemoPage("Message Page"),
-    MyDimens().getDemoPage("Documents Page"),
+   //MyDimens().getDemoPage("Documents Page"),
     MyDimens().getDemoPage("Profile Page"),
   ];
   int _currentPage = 0;

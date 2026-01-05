@@ -1,4 +1,4 @@
-import 'package:bloc_practice1/core/helper/reponsive_helper.dart';
+import 'package:bloc_practice1/bloc_structure/core/helper/reponsive_helper.dart';
 import 'package:flutter/material.dart';
 
 extension ResponsiveExtensions on BuildContext {

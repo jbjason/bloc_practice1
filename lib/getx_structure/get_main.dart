@@ -1,7 +1,7 @@
 import 'package:bloc_practice1/getx_structure/app/modules/splash/binding/splash_binding.dart';
 import 'package:bloc_practice1/getx_structure/app/routes/app_pages.dart';
 import 'package:bloc_practice1/getx_structure/app/routes/app_routes.dart';
-import 'package:bloc_practice1/theme.dart';
+import 'package:bloc_practice1/getx_structure/config/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

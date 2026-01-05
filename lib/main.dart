@@ -1,8 +1,8 @@
-import 'package:bloc_practice1/core/cubit/counter_cubit.dart';
-import 'package:bloc_practice1/home_screen.dart';
-import 'package:bloc_practice1/theme.dart';
+import 'package:bloc_practice1/bloc_structure/core/cubit/counter_cubit.dart';
+import 'package:bloc_practice1/bloc_structure/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'bloc_structure/theme.dart';
 
 ///
 /// Provider Structure Main.dart
