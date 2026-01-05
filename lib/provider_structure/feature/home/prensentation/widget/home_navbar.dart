@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bloc_practice1/provider_structure/core/constants/my_color.dart';
 import 'package:bloc_practice1/provider_structure/core/constants/my_constants.dart';
-import 'package:bloc_practice1/provider_structure/feature/home/prensentation/widget/home_navbar_cart_button.dart';
 
 class HomeNavbar extends StatelessWidget {
   const HomeNavbar({
@@ -25,17 +24,17 @@ class HomeNavbar extends StatelessWidget {
           _getNavBarItem(index: 0, width: itemWidth),
           // message icon
           _getNavBarItem(index: 1, width: itemWidth),
-          // cart icon button
-          Expanded(
-            child: HomeNavbarCartButton(
-              itemWidth: itemWidth,
-              bottomHeight: navBarHeight / 2,
-            ),
-          ),
+          // // cart icon button
+          // Expanded(
+          //   child: HomeNavbarCartButton(
+          //     itemWidth: itemWidth,
+          //     bottomHeight: navBarHeight / 2,
+          //   ),
+          // ),
           // file icon
           _getNavBarItem(index: 2, width: itemWidth),
           // people icon
-          _getNavBarItem(index: 3, width: itemWidth),
+          //_getNavBarItem(index: 3, width: itemWidth),
         ],
       ),
     );

@@ -4,7 +4,21 @@ import 'package:bloc_practice1/provider_structure/core/constants/my_string.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-abstract class AppTheme {
+class AppTheme with ChangeNotifier {
+  ///
+  /// App THeme privider
+
+  ThemeMode _themeMode = ThemeMode.light;
+  ThemeMode get themeMode => _themeMode;
+
+  void toggleTheme() {
+    _themeMode =
+        _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    notifyListeners();
+  }
+
+  ///
+  /// APP theme starts
   static final visualDensity = VisualDensity.adaptivePlatformDensity;
 
   static bool isMobile(BuildContext context) {
@@ -62,558 +76,526 @@ abstract class AppTheme {
   }
 
   static ThemeData light(BuildContext context) => ThemeData(
-    useMaterial3: true,
-    visualDensity: visualDensity,
-    primaryColor: MyColor.primary,
-    scaffoldBackgroundColor: MyColor.surface,
-    cardColor: MyColor.surfaceContainer,
-    iconTheme: IconThemeData(
-      color: MyColor.onSurfaceVariant,
-      size: getResponsiveSize(context, 20.w, 16.w, 24.w),
-    ),
-    appBarTheme: AppBarTheme(
-      elevation: 0,
-      titleSpacing: getResponsiveSize(context, 16.w, 12.w, 24.w),
-      centerTitle: isTablet(context) ? true : false,
-      iconTheme: IconThemeData(
-        color: MyColor.onSurfaceVariant,
-        size: getResponsiveSize(context, 20.w, 16.w, 24.w),
-      ),
-      backgroundColor: MyColor.primary,
-      titleTextStyle: TextStyle(
-        color: MyColor.onSurface,
-        fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp),
-        fontFamily: MyString.poppinsMedium,
-        fontWeight: FontWeight.w600,
-      ),
-      toolbarHeight: getResponsiveSize(context, 56.h, 75.h, 64.h),
-    ),
-    colorScheme: ColorScheme(
-      brightness: Brightness.light,
-      primary: MyColor.primary,
-      onPrimary: MyColor.onPrimary,
-      primaryContainer: MyColor.primaryContainer,
-      onPrimaryContainer: MyColor.onPrimaryContainer,
-      secondary: MyColor.secondary,
-      onSecondary: MyColor.onSecondary,
-      secondaryContainer: MyColor.secondaryContainer,
-      onSecondaryContainer: MyColor.onSecondaryContainer,
-      tertiary: MyColor.secondary,
-      onTertiary: MyColor.onSecondary,
-      tertiaryContainer: MyColor.secondaryContainer,
-      onTertiaryContainer: MyColor.onSecondaryContainer,
-      error: MyColor.error,
-      onError: MyColor.onPrimary,
-      errorContainer: MyColor.errorContainer,
-      onErrorContainer: MyColor.onErrorContainer,
-      surface: MyColor.surface,
-      onSurface: MyColor.onSurface,
-      surfaceContainerHighest: MyColor.surfaceContainerHigh,
-      onSurfaceVariant: MyColor.onSurfaceVariant,
-      outline: MyColor.outline,
-      outlineVariant: MyColor.outlineVariant,
-      shadow: MyColor.black,
-      scrim: MyColor.black,
-      inverseSurface: MyColor.darkSurface,
-      onInverseSurface: MyColor.darkOnSurface,
-      inversePrimary: MyColor.primaryFixedDim,
-      surfaceTint: MyColor.primary,
-    ),
-    textTheme: TextTheme(
-      displayLarge: TextStyle(
-        color: MyColor.onSurface,
-        fontFamily: MyString.poppinsMedium,
-        fontSize:
-            getResponsiveTextSize(context, 32.sp, 30.sp, 40.sp) *
-            responsiveTextScale(context),
-        fontWeight: FontWeight.w700,
-      ),
-      displayMedium: TextStyle(
-        color: MyColor.onSurface,
-        fontFamily: MyString.poppinsMedium,
-        fontSize:
-            getResponsiveTextSize(context, 28.sp, 26.sp, 36.sp) *
-            responsiveTextScale(context),
-        fontWeight: FontWeight.w600,
-      ),
-      displaySmall: TextStyle(
-        color: MyColor.onSurface,
-        fontFamily: MyString.poppinsMedium,
-        fontSize:
-            getResponsiveTextSize(context, 24.sp, 22.sp, 32.sp) *
-            responsiveTextScale(context),
-        fontWeight: FontWeight.w600,
-      ),
-      titleLarge: TextStyle(
-        color: MyColor.onSurface,
-        fontFamily: MyString.poppinsMedium,
-        fontSize:
-            getResponsiveTextSize(context, 20.sp, 19.sp, 24.sp) *
-            responsiveTextScale(context),
-        fontWeight: FontWeight.w600,
-      ),
-      titleMedium: TextStyle(
-        color: MyColor.onSurface,
-        fontSize:
-            getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
-            responsiveTextScale(context),
-        fontFamily: MyString.poppinsMedium,
-        fontWeight: FontWeight.w500,
-      ),
-      titleSmall: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.onSurfaceVariant,
-        fontFamily: MyString.poppinsRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      bodyLarge: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
-            responsiveTextScale(context),
-        color: MyColor.onSurface,
-        fontFamily: MyString.rubikRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      bodyMedium: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.onSurface,
-        fontFamily: MyString.rubikRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      bodySmall: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 10.sp, 9.5.sp, 12.sp) *
-            responsiveTextScale(context),
-        color: MyColor.onSurfaceVariant,
-        fontFamily: MyString.rubikRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      labelLarge: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.onSurfaceVariant,
-        fontFamily: MyString.poppinsMedium,
-        fontWeight: FontWeight.w500,
-      ),
-      labelMedium: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 12.sp, 11.sp, 14.sp) *
-            responsiveTextScale(context),
-        color: MyColor.onSurfaceVariant,
-        fontFamily: MyString.poppinsRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      labelSmall: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 10.sp, 9.5.sp, 12.sp) *
-            responsiveTextScale(context),
-        color: MyColor.outline,
-        fontFamily: MyString.poppinsRegular,
-        fontWeight: FontWeight.w400,
-      ),
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      labelStyle: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.onSurfaceVariant,
-        fontWeight: FontWeight.w400,
-      ),
-      hintStyle: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.outline,
-        letterSpacing: 1.2,
-        fontWeight: FontWeight.w400,
-      ),
-      isDense: true,
-      filled: true,
-      prefixIconColor: MyColor.outline,
-      fillColor: MyColor.surfaceContainerLowest,
-      contentPadding: EdgeInsets.symmetric(
-        vertical: 10.h * responsiveSpacing(context),
-        horizontal: 18.w * responsiveSpacing(context),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(7.r * tabletSizeMultiplier(context)),
+        useMaterial3: true,
+        visualDensity: visualDensity,
+        primaryColor: MyColor.primary,
+        scaffoldBackgroundColor: MyColor.surface,
+        cardColor: MyColor.surfaceContainer,
+        iconTheme: IconThemeData(
+          color: MyColor.onSurfaceVariant,
+          size: getResponsiveSize(context, 20.w, 16.w, 24.w),
         ),
-        borderSide: BorderSide(
-          color: MyColor.primary,
-          width: 1.5.w * tabletSizeMultiplier(context),
+        appBarTheme: AppBarTheme(
+          elevation: 0,
+          titleSpacing: getResponsiveSize(context, 16.w, 12.w, 24.w),
+          centerTitle: isTablet(context) ? true : false,
+          iconTheme: IconThemeData(
+            color: MyColor.onSurfaceVariant,
+            size: getResponsiveSize(context, 20.w, 16.w, 24.w),
+          ),
+          backgroundColor: MyColor.primary,
+          titleTextStyle: TextStyle(
+            color: MyColor.onSurface,
+            fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp),
+            fontFamily: MyString.poppinsMedium,
+            fontWeight: FontWeight.w600,
+          ),
+          toolbarHeight: getResponsiveSize(context, 56.h, 75.h, 64.h),
         ),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(7.r * tabletSizeMultiplier(context)),
+        colorScheme: ColorScheme(
+          brightness: Brightness.light,
+          primary: MyColor.primary,
+          onPrimary: MyColor.onPrimary,
+          primaryContainer: MyColor.primaryContainer,
+          onPrimaryContainer: MyColor.onPrimaryContainer,
+          secondary: MyColor.secondary,
+          onSecondary: MyColor.onSecondary,
+          secondaryContainer: MyColor.secondaryContainer,
+          onSecondaryContainer: MyColor.onSecondaryContainer,
+          tertiary: MyColor.secondary,
+          onTertiary: MyColor.onSecondary,
+          tertiaryContainer: MyColor.secondaryContainer,
+          onTertiaryContainer: MyColor.onSecondaryContainer,
+          error: MyColor.error,
+          onError: MyColor.onPrimary,
+          errorContainer: MyColor.errorContainer,
+          onErrorContainer: MyColor.onErrorContainer,
+          surface: MyColor.surface,
+          onSurface: MyColor.onSurface,
+          surfaceContainerHighest: MyColor.surfaceContainerHigh,
+          onSurfaceVariant: MyColor.onSurfaceVariant,
+          outline: MyColor.outline,
+          outlineVariant: MyColor.outlineVariant,
+          shadow: MyColor.black,
+          scrim: MyColor.black,
+          inverseSurface: MyColor.darkSurface,
+          onInverseSurface: MyColor.darkOnSurface,
+          inversePrimary: MyColor.primaryFixedDim,
+          surfaceTint: MyColor.primary,
         ),
-        borderSide: BorderSide(
+        textTheme: TextTheme(
+          displayLarge: TextStyle(
+            color: MyColor.onSurface,
+            fontFamily: MyString.poppinsMedium,
+            fontSize: getResponsiveTextSize(context, 32.sp, 30.sp, 40.sp) *
+                responsiveTextScale(context),
+            fontWeight: FontWeight.w700,
+          ),
+          displayMedium: TextStyle(
+            color: MyColor.onSurface,
+            fontFamily: MyString.poppinsMedium,
+            fontSize: getResponsiveTextSize(context, 28.sp, 26.sp, 36.sp) *
+                responsiveTextScale(context),
+            fontWeight: FontWeight.w600,
+          ),
+          displaySmall: TextStyle(
+            color: MyColor.onSurface,
+            fontFamily: MyString.poppinsMedium,
+            fontSize: getResponsiveTextSize(context, 24.sp, 22.sp, 32.sp) *
+                responsiveTextScale(context),
+            fontWeight: FontWeight.w600,
+          ),
+          titleLarge: TextStyle(
+            color: MyColor.onSurface,
+            fontFamily: MyString.poppinsMedium,
+            fontSize: getResponsiveTextSize(context, 20.sp, 19.sp, 24.sp) *
+                responsiveTextScale(context),
+            fontWeight: FontWeight.w600,
+          ),
+          titleMedium: TextStyle(
+            color: MyColor.onSurface,
+            fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
+                responsiveTextScale(context),
+            fontFamily: MyString.poppinsMedium,
+            fontWeight: FontWeight.w500,
+          ),
+          titleSmall: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.onSurfaceVariant,
+            fontFamily: MyString.poppinsRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          bodyLarge: TextStyle(
+            fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
+                responsiveTextScale(context),
+            color: MyColor.onSurface,
+            fontFamily: MyString.rubikRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.onSurface,
+            fontFamily: MyString.rubikRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          bodySmall: TextStyle(
+            fontSize: getResponsiveTextSize(context, 10.sp, 9.5.sp, 12.sp) *
+                responsiveTextScale(context),
+            color: MyColor.onSurfaceVariant,
+            fontFamily: MyString.rubikRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          labelLarge: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.onSurfaceVariant,
+            fontFamily: MyString.poppinsMedium,
+            fontWeight: FontWeight.w500,
+          ),
+          labelMedium: TextStyle(
+            fontSize: getResponsiveTextSize(context, 12.sp, 11.sp, 14.sp) *
+                responsiveTextScale(context),
+            color: MyColor.onSurfaceVariant,
+            fontFamily: MyString.poppinsRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          labelSmall: TextStyle(
+            fontSize: getResponsiveTextSize(context, 10.sp, 9.5.sp, 12.sp) *
+                responsiveTextScale(context),
+            color: MyColor.outline,
+            fontFamily: MyString.poppinsRegular,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.onSurfaceVariant,
+            fontWeight: FontWeight.w400,
+          ),
+          hintStyle: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.outline,
+            letterSpacing: 1.2,
+            fontWeight: FontWeight.w400,
+          ),
+          isDense: true,
+          filled: true,
+          prefixIconColor: MyColor.outline,
+          fillColor: MyColor.surfaceContainerLowest,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 10.h * responsiveSpacing(context),
+            horizontal: 18.w * responsiveSpacing(context),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(7.r * tabletSizeMultiplier(context)),
+            ),
+            borderSide: BorderSide(
+              color: MyColor.primary,
+              width: 1.5.w * tabletSizeMultiplier(context),
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(7.r * tabletSizeMultiplier(context)),
+            ),
+            borderSide: BorderSide(
+              color: MyColor.outlineVariant,
+              width: 1.0.w * tabletSizeMultiplier(context),
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(7.r * tabletSizeMultiplier(context)),
+            ),
+            borderSide: BorderSide(
+              color: MyColor.error,
+              width: 1.5.w * tabletSizeMultiplier(context),
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(7.r * tabletSizeMultiplier(context)),
+            ),
+            borderSide: BorderSide(
+              color: MyColor.error,
+              width: 1.5.w * tabletSizeMultiplier(context),
+            ),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            shape: WidgetStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  7.r * tabletSizeMultiplier(context),
+                ),
+              ),
+            ),
+            padding: WidgetStateProperty.all(
+              EdgeInsets.symmetric(
+                vertical: 16.h * responsiveSpacing(context),
+                horizontal: 24.w * responsiveSpacing(context),
+              ),
+            ),
+            backgroundColor: WidgetStateProperty.all(MyColor.primary),
+            foregroundColor: WidgetStateProperty.all(MyColor.onPrimary),
+            textStyle: WidgetStateProperty.all(
+              TextStyle(
+                fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
+                    responsiveTextScale(context),
+                fontFamily: MyString.poppinsMedium,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            elevation: WidgetStateProperty.all(0),
+            minimumSize: WidgetStateProperty.all(
+              Size(
+                getResponsiveSize(context, 100.w, 85.w, 120.w),
+                getResponsiveSize(context, 44.h, 40.h, 52.h),
+              ),
+            ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: WidgetStateProperty.all(MyColor.primary),
+            textStyle: WidgetStateProperty.all(
+              TextStyle(
+                fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                    responsiveTextScale(context),
+                fontFamily: MyString.poppinsMedium,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            padding: WidgetStateProperty.all(
+              EdgeInsets.symmetric(
+                vertical: 8.h * responsiveSpacing(context),
+                horizontal: 16.w * responsiveSpacing(context),
+              ),
+            ),
+          ),
+        ),
+        dividerTheme: DividerThemeData(
           color: MyColor.outlineVariant,
-          width: 1.0.w * tabletSizeMultiplier(context),
+          thickness: 1.0.w * tabletSizeMultiplier(context),
+          space: 1.0.h * responsiveSpacing(context),
         ),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(7.r * tabletSizeMultiplier(context)),
-        ),
-        borderSide: BorderSide(
-          color: MyColor.error,
-          width: 1.5.w * tabletSizeMultiplier(context),
-        ),
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(7.r * tabletSizeMultiplier(context)),
-        ),
-        borderSide: BorderSide(
-          color: MyColor.error,
-          width: 1.5.w * tabletSizeMultiplier(context),
-        ),
-      ),
-    ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              7.r * tabletSizeMultiplier(context),
-            ),
-          ),
-        ),
-        padding: WidgetStateProperty.all(
-          EdgeInsets.symmetric(
-            vertical: 16.h * responsiveSpacing(context),
-            horizontal: 24.w * responsiveSpacing(context),
-          ),
-        ),
-        backgroundColor: WidgetStateProperty.all(MyColor.primary),
-        foregroundColor: WidgetStateProperty.all(MyColor.onPrimary),
-        textStyle: WidgetStateProperty.all(
-          TextStyle(
-            fontSize:
-                getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
-                responsiveTextScale(context),
-            fontFamily: MyString.poppinsMedium,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        elevation: WidgetStateProperty.all(0),
-        minimumSize: WidgetStateProperty.all(
-          Size(
-            getResponsiveSize(context, 100.w, 85.w, 120.w),
-            getResponsiveSize(context, 44.h, 40.h, 52.h),
-          ),
-        ),
-      ),
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        foregroundColor: WidgetStateProperty.all(MyColor.primary),
-        textStyle: WidgetStateProperty.all(
-          TextStyle(
-            fontSize:
-                getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-                responsiveTextScale(context),
-            fontFamily: MyString.poppinsMedium,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        padding: WidgetStateProperty.all(
-          EdgeInsets.symmetric(
-            vertical: 8.h * responsiveSpacing(context),
-            horizontal: 16.w * responsiveSpacing(context),
-          ),
-        ),
-      ),
-    ),
-    dividerTheme: DividerThemeData(
-      color: MyColor.outlineVariant,
-      thickness: 1.0.w * tabletSizeMultiplier(context),
-      space: 1.0.h * responsiveSpacing(context),
-    ),
-  );
+      );
   static ThemeData dark(BuildContext context) => ThemeData.dark().copyWith(
-    visualDensity: visualDensity,
-    primaryColor: MyColor.primary,
-    scaffoldBackgroundColor: MyColor.darkSurface,
-    cardColor: MyColor.darkSurfaceContainer,
-    iconTheme: IconThemeData(
-      color: MyColor.darkOnSurfaceVariant,
-      size: getResponsiveSize(context, 20.w, 16.w, 24.w),
-    ),
-    appBarTheme: AppBarTheme(
-      elevation: 0,
-      iconTheme: IconThemeData(
-        color: MyColor.darkOnSurfaceVariant,
-        size: getResponsiveSize(context, 20.w, 16.w, 24.w),
-      ),
-      backgroundColor: MyColor.darkSurface,
-      titleTextStyle: TextStyle(
-        color: MyColor.darkOnSurface,
-        fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp),
-        fontFamily: MyString.poppinsMedium,
-        fontWeight: FontWeight.w600,
-      ),
-      toolbarHeight: getResponsiveSize(context, 56.h, 75.h, 64.h),
-    ),
-    colorScheme: ColorScheme(
-      brightness: Brightness.dark,
-      primary: MyColor.primary,
-      onPrimary: MyColor.onPrimary,
-      primaryContainer: MyColor.primaryContainer,
-      onPrimaryContainer: MyColor.onPrimaryContainer,
-      secondary: MyColor.darkSurfaceContainerHigh,
-      onSecondary: MyColor.darkOnSurface,
-      secondaryContainer: MyColor.darkSurfaceContainerHigh,
-      onSecondaryContainer: MyColor.darkOnSurface,
-      tertiary: MyColor.darkSurfaceContainerHigh,
-      onTertiary: MyColor.darkOnSurface,
-      tertiaryContainer: MyColor.darkSurfaceContainerHigh,
-      onTertiaryContainer: MyColor.darkOnSurface,
-      error: MyColor.darkError,
-      onError: MyColor.onPrimary,
-      errorContainer: MyColor.darkErrorContainer,
-      onErrorContainer: MyColor.darkOnErrorContainer,
-      surface: MyColor.darkSurface,
-      onSurface: MyColor.darkOnSurface,
-      surfaceContainerHighest: MyColor.darkSurfaceContainerHigh,
-      onSurfaceVariant: MyColor.darkOnSurfaceVariant,
-      outline: MyColor.darkOutline,
-      outlineVariant: MyColor.darkOutlineVariant,
-      shadow: MyColor.black,
-      scrim: MyColor.black,
-      inverseSurface: MyColor.surface,
-      onInverseSurface: MyColor.onSurface,
-      inversePrimary: MyColor.primaryFixedDim,
-      surfaceTint: MyColor.primary,
-    ),
-    textTheme: TextTheme(
-      displayLarge: TextStyle(
-        color: MyColor.darkOnSurface,
-        fontFamily: MyString.poppinsMedium,
-        fontSize:
-            getResponsiveTextSize(context, 32.sp, 30.sp, 40.sp) *
-            responsiveTextScale(context),
-        fontWeight: FontWeight.w700,
-      ),
-      displayMedium: TextStyle(
-        color: MyColor.darkOnSurface,
-        fontFamily: MyString.poppinsMedium,
-        fontSize:
-            getResponsiveTextSize(context, 28.sp, 26.sp, 36.sp) *
-            responsiveTextScale(context),
-        fontWeight: FontWeight.w600,
-      ),
-      displaySmall: TextStyle(
-        color: MyColor.darkOnSurface,
-        fontFamily: MyString.poppinsMedium,
-        fontSize:
-            getResponsiveTextSize(context, 24.sp, 22.sp, 32.sp) *
-            responsiveTextScale(context),
-        fontWeight: FontWeight.w600,
-      ),
-      titleLarge: TextStyle(
-        color: MyColor.darkSurfaceBright,
-        fontFamily: MyString.poppinsMedium,
-        fontSize:
-            getResponsiveTextSize(context, 20.sp, 19.sp, 24.sp) *
-            responsiveTextScale(context),
-        fontWeight: FontWeight.w600,
-      ),
-      titleMedium: TextStyle(
-        color: MyColor.darkSurfaceBright,
-        fontSize:
-            getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
-            responsiveTextScale(context),
-        fontFamily: MyString.poppinsMedium,
-        fontWeight: FontWeight.w500,
-      ),
-      titleSmall: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.darkOnSurfaceVariant,
-        fontFamily: MyString.poppinsRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      bodyLarge: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
-            responsiveTextScale(context),
-        color: MyColor.darkOnSurface,
-        fontFamily: MyString.rubikRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      bodyMedium: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.darkSurfaceBright,
-        fontFamily: MyString.rubikRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      bodySmall: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 12.sp, 11.5.sp, 14.sp) *
-            responsiveTextScale(context),
-        color: MyColor.darkOnSurfaceVariant,
-        fontFamily: MyString.rubikRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      labelLarge: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.darkOnSurfaceVariant,
-        fontFamily: MyString.poppinsMedium,
-        fontWeight: FontWeight.w500,
-      ),
-      labelMedium: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 12.sp, 11.sp, 14.sp) *
-            responsiveTextScale(context),
-        color: MyColor.darkOnSurfaceVariant,
-        fontFamily: MyString.poppinsRegular,
-        fontWeight: FontWeight.w400,
-      ),
-      labelSmall: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 10.sp, 9.5.sp, 12.sp) *
-            responsiveTextScale(context),
-        color: MyColor.darkOutline,
-        fontFamily: MyString.poppinsRegular,
-        fontWeight: FontWeight.w400,
-      ),
-    ),
-    inputDecorationTheme: InputDecorationTheme(
-      labelStyle: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.darkOnSurfaceVariant,
-        fontWeight: FontWeight.w400,
-      ),
-      hintStyle: TextStyle(
-        fontSize:
-            getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
-            responsiveTextScale(context),
-        color: MyColor.darkOutline,
-        letterSpacing: 1.2,
-        fontWeight: FontWeight.w400,
-      ),
-      isDense: true,
-      filled: true,
-      prefixIconColor: MyColor.darkOutline,
-      fillColor: MyColor.darkSurfaceContainer,
-      contentPadding: EdgeInsets.symmetric(
-        vertical: 10.h * responsiveSpacing(context),
-        horizontal: 18.w * responsiveSpacing(context),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(7.r * tabletSizeMultiplier(context)),
+        visualDensity: visualDensity,
+        primaryColor: MyColor.primary,
+        scaffoldBackgroundColor: MyColor.darkSurface,
+        cardColor: MyColor.darkSurfaceContainer,
+        iconTheme: IconThemeData(
+          color: MyColor.darkOnSurfaceVariant,
+          size: getResponsiveSize(context, 20.w, 16.w, 24.w),
         ),
-        borderSide: BorderSide(
-          color: MyColor.primary,
-          width: 1.5.w * tabletSizeMultiplier(context),
-        ),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(7.r * tabletSizeMultiplier(context)),
-        ),
-        borderSide: BorderSide(
-          color: MyColor.darkOutlineVariant,
-          width: 1.0.w * tabletSizeMultiplier(context),
-        ),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(7.r * tabletSizeMultiplier(context)),
-        ),
-        borderSide: BorderSide(
-          color: MyColor.darkError,
-          width: 1.5.w * tabletSizeMultiplier(context),
-        ),
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(7.r * tabletSizeMultiplier(context)),
-        ),
-        borderSide: BorderSide(
-          color: MyColor.darkError,
-          width: 1.5.w * tabletSizeMultiplier(context),
-        ),
-      ),
-    ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              7.r * tabletSizeMultiplier(context),
-            ),
+        appBarTheme: AppBarTheme(
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: MyColor.darkOnSurfaceVariant,
+            size: getResponsiveSize(context, 20.w, 16.w, 24.w),
           ),
-        ),
-        padding: WidgetStateProperty.all(
-          EdgeInsets.symmetric(
-            vertical: 16.h * responsiveSpacing(context),
-            horizontal: 24.w * responsiveSpacing(context),
-          ),
-        ),
-        backgroundColor: WidgetStateProperty.all(MyColor.primary),
-        foregroundColor: WidgetStateProperty.all(MyColor.onPrimary),
-        textStyle: WidgetStateProperty.all(
-          TextStyle(
-            fontSize:
-                getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
-                responsiveTextScale(context),
+          backgroundColor: MyColor.darkSurface,
+          titleTextStyle: TextStyle(
+            color: MyColor.darkOnSurface,
+            fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp),
             fontFamily: MyString.poppinsMedium,
             fontWeight: FontWeight.w600,
           ),
+          toolbarHeight: getResponsiveSize(context, 56.h, 75.h, 64.h),
         ),
-        elevation: WidgetStateProperty.all(0),
-        minimumSize: WidgetStateProperty.all(
-          Size(
-            getResponsiveSize(context, 100.w, 85.w, 120.w),
-            getResponsiveSize(context, 44.h, 40.h, 52.h),
+        colorScheme: ColorScheme(
+          brightness: Brightness.dark,
+          primary: MyColor.primary,
+          onPrimary: MyColor.onPrimary,
+          primaryContainer: MyColor.primaryContainer,
+          onPrimaryContainer: MyColor.onPrimaryContainer,
+          secondary: MyColor.darkSurfaceContainerHigh,
+          onSecondary: MyColor.darkOnSurface,
+          secondaryContainer: MyColor.darkSurfaceContainerHigh,
+          onSecondaryContainer: MyColor.darkOnSurface,
+          tertiary: MyColor.darkSurfaceContainerHigh,
+          onTertiary: MyColor.darkOnSurface,
+          tertiaryContainer: MyColor.darkSurfaceContainerHigh,
+          onTertiaryContainer: MyColor.darkOnSurface,
+          error: MyColor.darkError,
+          onError: MyColor.onPrimary,
+          errorContainer: MyColor.darkErrorContainer,
+          onErrorContainer: MyColor.darkOnErrorContainer,
+          surface: MyColor.darkSurface,
+          onSurface: MyColor.darkOnSurface,
+          surfaceContainerHighest: MyColor.darkSurfaceContainerHigh,
+          onSurfaceVariant: MyColor.darkOnSurfaceVariant,
+          outline: MyColor.darkOutline,
+          outlineVariant: MyColor.darkOutlineVariant,
+          shadow: MyColor.black,
+          scrim: MyColor.black,
+          inverseSurface: MyColor.surface,
+          onInverseSurface: MyColor.onSurface,
+          inversePrimary: MyColor.primaryFixedDim,
+          surfaceTint: MyColor.primary,
+        ),
+        textTheme: TextTheme(
+          displayLarge: TextStyle(
+            color: MyColor.darkOnSurface,
+            fontFamily: MyString.poppinsMedium,
+            fontSize: getResponsiveTextSize(context, 32.sp, 30.sp, 40.sp) *
+                responsiveTextScale(context),
+            fontWeight: FontWeight.w700,
           ),
-        ),
-      ),
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        foregroundColor: WidgetStateProperty.all(MyColor.primary),
-        textStyle: WidgetStateProperty.all(
-          TextStyle(
-            fontSize:
-                getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+          displayMedium: TextStyle(
+            color: MyColor.darkOnSurface,
+            fontFamily: MyString.poppinsMedium,
+            fontSize: getResponsiveTextSize(context, 28.sp, 26.sp, 36.sp) *
+                responsiveTextScale(context),
+            fontWeight: FontWeight.w600,
+          ),
+          displaySmall: TextStyle(
+            color: MyColor.darkOnSurface,
+            fontFamily: MyString.poppinsMedium,
+            fontSize: getResponsiveTextSize(context, 24.sp, 22.sp, 32.sp) *
+                responsiveTextScale(context),
+            fontWeight: FontWeight.w600,
+          ),
+          titleLarge: TextStyle(
+            color: MyColor.darkSurfaceBright,
+            fontFamily: MyString.poppinsMedium,
+            fontSize: getResponsiveTextSize(context, 20.sp, 19.sp, 24.sp) *
+                responsiveTextScale(context),
+            fontWeight: FontWeight.w600,
+          ),
+          titleMedium: TextStyle(
+            color: MyColor.darkSurfaceBright,
+            fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
                 responsiveTextScale(context),
             fontFamily: MyString.poppinsMedium,
             fontWeight: FontWeight.w500,
           ),
-        ),
-        padding: WidgetStateProperty.all(
-          EdgeInsets.symmetric(
-            vertical: 8.h * responsiveSpacing(context),
-            horizontal: 16.w * responsiveSpacing(context),
+          titleSmall: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.darkOnSurfaceVariant,
+            fontFamily: MyString.poppinsRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          bodyLarge: TextStyle(
+            fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
+                responsiveTextScale(context),
+            color: MyColor.darkOnSurface,
+            fontFamily: MyString.rubikRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          bodyMedium: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.darkSurfaceBright,
+            fontFamily: MyString.rubikRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          bodySmall: TextStyle(
+            fontSize: getResponsiveTextSize(context, 12.sp, 11.5.sp, 14.sp) *
+                responsiveTextScale(context),
+            color: MyColor.darkOnSurfaceVariant,
+            fontFamily: MyString.rubikRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          labelLarge: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.darkOnSurfaceVariant,
+            fontFamily: MyString.poppinsMedium,
+            fontWeight: FontWeight.w500,
+          ),
+          labelMedium: TextStyle(
+            fontSize: getResponsiveTextSize(context, 12.sp, 11.sp, 14.sp) *
+                responsiveTextScale(context),
+            color: MyColor.darkOnSurfaceVariant,
+            fontFamily: MyString.poppinsRegular,
+            fontWeight: FontWeight.w400,
+          ),
+          labelSmall: TextStyle(
+            fontSize: getResponsiveTextSize(context, 10.sp, 9.5.sp, 12.sp) *
+                responsiveTextScale(context),
+            color: MyColor.darkOutline,
+            fontFamily: MyString.poppinsRegular,
+            fontWeight: FontWeight.w400,
           ),
         ),
-      ),
-    ),
-    dividerTheme: DividerThemeData(
-      color: MyColor.darkOutlineVariant,
-      thickness: 1.0.w * tabletSizeMultiplier(context),
-      space: 1.0.h * responsiveSpacing(context),
-    ),
-  );
+        inputDecorationTheme: InputDecorationTheme(
+          labelStyle: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.darkOnSurfaceVariant,
+            fontWeight: FontWeight.w400,
+          ),
+          hintStyle: TextStyle(
+            fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                responsiveTextScale(context),
+            color: MyColor.darkOutline,
+            letterSpacing: 1.2,
+            fontWeight: FontWeight.w400,
+          ),
+          isDense: true,
+          filled: true,
+          prefixIconColor: MyColor.darkOutline,
+          fillColor: MyColor.darkSurfaceContainer,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 10.h * responsiveSpacing(context),
+            horizontal: 18.w * responsiveSpacing(context),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(7.r * tabletSizeMultiplier(context)),
+            ),
+            borderSide: BorderSide(
+              color: MyColor.primary,
+              width: 1.5.w * tabletSizeMultiplier(context),
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(7.r * tabletSizeMultiplier(context)),
+            ),
+            borderSide: BorderSide(
+              color: MyColor.darkOutlineVariant,
+              width: 1.0.w * tabletSizeMultiplier(context),
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(7.r * tabletSizeMultiplier(context)),
+            ),
+            borderSide: BorderSide(
+              color: MyColor.darkError,
+              width: 1.5.w * tabletSizeMultiplier(context),
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(7.r * tabletSizeMultiplier(context)),
+            ),
+            borderSide: BorderSide(
+              color: MyColor.darkError,
+              width: 1.5.w * tabletSizeMultiplier(context),
+            ),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            shape: WidgetStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  7.r * tabletSizeMultiplier(context),
+                ),
+              ),
+            ),
+            padding: WidgetStateProperty.all(
+              EdgeInsets.symmetric(
+                vertical: 16.h * responsiveSpacing(context),
+                horizontal: 24.w * responsiveSpacing(context),
+              ),
+            ),
+            backgroundColor: WidgetStateProperty.all(MyColor.primary),
+            foregroundColor: WidgetStateProperty.all(MyColor.onPrimary),
+            textStyle: WidgetStateProperty.all(
+              TextStyle(
+                fontSize: getResponsiveTextSize(context, 16.sp, 15.sp, 18.sp) *
+                    responsiveTextScale(context),
+                fontFamily: MyString.poppinsMedium,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            elevation: WidgetStateProperty.all(0),
+            minimumSize: WidgetStateProperty.all(
+              Size(
+                getResponsiveSize(context, 100.w, 85.w, 120.w),
+                getResponsiveSize(context, 44.h, 40.h, 52.h),
+              ),
+            ),
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: WidgetStateProperty.all(MyColor.primary),
+            textStyle: WidgetStateProperty.all(
+              TextStyle(
+                fontSize: getResponsiveTextSize(context, 14.sp, 13.sp, 16.sp) *
+                    responsiveTextScale(context),
+                fontFamily: MyString.poppinsMedium,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            padding: WidgetStateProperty.all(
+              EdgeInsets.symmetric(
+                vertical: 8.h * responsiveSpacing(context),
+                horizontal: 16.w * responsiveSpacing(context),
+              ),
+            ),
+          ),
+        ),
+        dividerTheme: DividerThemeData(
+          color: MyColor.darkOutlineVariant,
+          thickness: 1.0.w * tabletSizeMultiplier(context),
+          space: 1.0.h * responsiveSpacing(context),
+        ),
+      );
 }
 
 // // appTheme.dart

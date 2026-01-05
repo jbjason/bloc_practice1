@@ -1,11 +1,12 @@
+import 'package:bloc_practice1/provider_structure/config/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bloc_practice1/provider_structure/core/constants/my_color.dart';
 import 'package:bloc_practice1/provider_structure/core/constants/my_icon.dart';
+import 'package:provider/provider.dart';
 
 class HomeLocation extends StatelessWidget {
   const HomeLocation({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,8 +30,14 @@ class HomeLocation extends StatelessWidget {
               ).textTheme.bodySmall!.copyWith(color: MyColor.gray400),
             ),
           ),
-          // notification icon
-          Image.asset(MyIcon.notification, width: 11.sp),
+          // theme icon
+          //Image.asset(MyIcon.notification, width: 11.sp),
+          Consumer<AppTheme>(
+            builder: (context, themeProvider, _) => Switch(
+              value: themeProvider.themeMode == ThemeMode.dark,
+              onChanged: (_) => themeProvider.toggleTheme(),
+            ),
+          ),
         ],
       ),
     );

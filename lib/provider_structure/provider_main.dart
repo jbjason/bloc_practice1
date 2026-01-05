@@ -1,9 +1,3 @@
-// import 'package:bloc_practice1/core/cubit/counter_cubit.dart';
-// import 'package:bloc_practice1/home_screen.dart';
-// import 'package:bloc_practice1/theme.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:bloc_practice1/provider_structure/config/theme/app_theme.dart';
 import 'package:bloc_practice1/provider_structure/feature/home/data/data_sources/home_data_source.dart';
 import 'package:bloc_practice1/provider_structure/feature/home/data/repository/home_repository.dart';
@@ -22,15 +16,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return BlocProvider<CounterCubit>(
-    //   create: (context) => CounterCubit(),
-    //   child: MaterialApp(
-    //     title: 'Flutter Demo',
-    //     debugShowCheckedModeBanner: false,
-    //     theme: AppTheme.light(),
-    //     home: const HomeScreen(),
-    //   ),
-    // );
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
