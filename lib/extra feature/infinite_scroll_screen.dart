@@ -1,4 +1,3 @@
-import 'package:bloc_practice1/provider_structure/core/base/base_client.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';

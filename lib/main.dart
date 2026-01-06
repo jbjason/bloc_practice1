@@ -1,6 +1,5 @@
 import 'package:bloc_practice1/bloc_structure/core/cubit/counter_cubit.dart';
 import 'package:bloc_practice1/bloc_structure/home_screen.dart';
-import 'package:bloc_practice1/extra%20feature/infinite_scroll_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc_structure/theme.dart';
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light(),
-        home: const InfiniteScrollScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
