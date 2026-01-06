@@ -1,8 +1,11 @@
 import 'package:bloc_practice1/provider_structure/config/theme/app_theme.dart';
 import 'package:bloc_practice1/provider_structure/feature/home/data/data_sources/home_data_source.dart';
+import 'package:bloc_practice1/provider_structure/feature/home/data/data_sources/test_data_source.dart';
 import 'package:bloc_practice1/provider_structure/feature/home/data/repository/home_repository.dart';
+import 'package:bloc_practice1/provider_structure/feature/home/data/repository/test_repository.dart';
 import 'package:bloc_practice1/provider_structure/feature/home/prensentation/page/home.dart';
 import 'package:bloc_practice1/provider_structure/feature/home/prensentation/provider/home_provider.dart';
+import 'package:bloc_practice1/provider_structure/feature/home/prensentation/provider/test_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +28,11 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (_) =>
                 HomeProvider(HomeRepository(HomeRemoteDataSourceImpl())),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => TestProvider(
+              TestRepository(TestRemoteDataSourceImpl()),
+            ),
           ),
         ],
         child: Consumer<AppTheme>(
